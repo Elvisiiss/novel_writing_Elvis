@@ -15,4 +15,17 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    host: '0.0.0.0', // 监听所有 IPv4 地址
+    port: 29835,      // 指定端口（默认 5173）
+    strictPort: true, // 如果端口被占用，直接退出
+    allowedHosts: [
+      'cal' // 允许 cal 主机名访问
+    ]
+  }
 })
+
+
+// netstat -ano | findstr "5173"
+// TCP    0.0.0.0:5173           0.0.0.0:0              LISTENING       12345
+// taskkill /PID 12345 /F
